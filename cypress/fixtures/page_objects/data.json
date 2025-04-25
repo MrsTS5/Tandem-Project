@@ -1,0 +1,10 @@
+{
+    "user":{
+        "invalidEmail":"jefrygmail.com",
+        "invalidPassword":"jefr",
+        "FirstName":"Anna",
+        "LastName":"Stanley",
+        "Password":"anna",
+        "Email":"stanley@gmail.com"
+    }
+}
