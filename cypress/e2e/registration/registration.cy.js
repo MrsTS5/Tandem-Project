@@ -5,67 +5,48 @@ let email;
 const password = faker.internet.password();
 const firstName = faker.person.firstName();
 const lastName = faker.person.lastName();
+const dateOfBirth = faker.date.birthdate({ min: 18, max: 90, mode: 'age' }).toLocaleDateString('en-US');
+
 
 describe('Registration', () => {
   before(() => {
-    cy.errorHandler(); 
+    cy.errorHandler();
   });
 
   beforeEach(() => {
-    cy.visit('https://source.tandemdiabetes.com/'); // ✅ go straight to the source page
+    cy.visit('https://sso.tandemdiabetes.com/registration/personal_standard')
     email = faker.internet.email();
+    cy.contains('button', 'Accept Performance Cookies', { timeout: 10000 }).click();
+
+    cy.get('[id="country"]').click();
+    cy.get('[data-value="US"]').click();
+    cy.get('button[type="button"]').contains('Continue').click();
+
   });
 
   it('Should Register new account', () => {
-    // registrationPage.mobileNavToggle.then(($btn) => {
-    //   if ($btn.is(':visible')) {
-    //     cy.wrap($btn).click();
-    //   }
-    // });
 
-    // // Click on "Tandem Source"
-    // registrationPage.tandemSourceLink.click();
-
-    // // Wait for redirect (optional)
-    // cy.url().should('include', '/tandem-source');
-
-    // // Now we expect to be on the Tandem Source landing page
-    // // You might need to explicitly visit the source page to continue:
-    // cy.visit('https://source.tandemdiabetes.com/');
-
-    // // Click "Create Account"
-    registrationPage.createAccountButton
-      .scrollIntoView()
-      .should('exist')
-      .click({ force: true });
-    // registrationPage.signInDropdown.click({force: true});
-    // registrationPage.sourceButton.scrollIntoView().should('be.visible').click();
-    // registrationPage.createAccountButton.scrollIntoView()
-    // .should('exist')
-    // .click({ force: true });
-
-    cy.origin('https://sso.tandemdiabetes.com', () => {
     registrationPage.firstName.type(firstName);
     registrationPage.lastName.type(lastName);
-    registrationPage.accountEmail.type(email);
-    cy.contains('button', 'Accept Cookies').click({ force: true });
-
 
     registrationPage.countryList.click();
     registrationPage.countryUS.click();
-
-    registrationPage.stateDropdown.click();
+    registrationPage.registrationStateDropdown.click();
     registrationPage.stateCA.click();
 
+    registrationPage.dateOfBirth.type(dateOfBirth)
+    registrationPage.accountEmail.type(email);
     registrationPage.securityQuestionDropdown.click();
+
     registrationPage.questionPetName.click();
     registrationPage.securityAnswer.type("Rick");
 
     registrationPage.confirmButton.click();
 
-   // cy.url().should('include', '/dashboard/user/profile');
+    registrationPage.termsOfUseCheckbox.click();
+    registrationPage.acknoledgementCheckbox.click();
+    registrationPage.continueButton.click();
+
   });
-});
-});
 
-
+});

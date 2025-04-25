@@ -21,18 +21,15 @@ describe('Placing Order', () => {
     orderPage.firstName.type(firstName);
     orderPage.lastName.type(lastName);
     orderPage.emailInput.type(email);
-    orderPage.countryList.select(country).should('have.value', 'United States');
-    //orderPage.countryUS.select(countryText).should('have.value', 'US');
-
+    orderPage.countryList.then($select => {
+      cy.wrap($select).invoke('val', 'US').trigger('change')
+    });
     orderPage.postalCode.should('not.be.disabled');
     orderPage.postalCode.type(postalCode);
     orderPage.phoneNumber.type(phoneNumber);
     orderPage.checkBoxAuthorization.click();
     orderPage.submitButton.click();
-
-    // Optional: Verify success message or redirection
-    // cy.contains('Thank you').should('be.visible');
+    orderPage.thankYouMessage.should('be.visible');
   });
 });
 
-        
