@@ -1,7 +1,7 @@
 {
     "user":{
         "invalidEmail":"smithgmail.com",
-        "invalidPassword":"1234567890",
+        "numericOnlyPassword":"1234567890",
         "FirstName":"John",
         "LastName":"Smith",
         "Password":"Johnsmith123*",

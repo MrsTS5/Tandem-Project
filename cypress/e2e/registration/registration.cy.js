@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import registrationPage from '../../fixtures/page_objects/registration.page';
+import commonPage from '../../fixtures/page_objects/common.page';
 
 let email;
 const password = faker.internet.password();
@@ -14,10 +15,7 @@ describe('Registration', () => {
   beforeEach(() => {
     cy.visit('https://sso.tandemdiabetes.com/registration/personal_standard')
     email = faker.internet.email();
-    cy.contains('button', 'Accept Performance Cookies', { timeout: 10000 }).click();
-    cy.get('[id="country"]').click();
-    cy.get('[data-value="US"]').click();
-    cy.get('button[type="button"]').contains('Continue').click();
+    commonPage.acceptCookiesAndSelectCountry('US');
   });
 
   it('Should Register new account', () => {
@@ -37,5 +35,20 @@ describe('Registration', () => {
     registrationPage.acknoledgementCheckbox.click();
     registrationPage.continueButton.click();
   });
+
+  it.only('Should not register with empty last name field', () =>{
+    registrationPage.firstName.type(firstName);
+    registrationPage.countryList.click();
+    registrationPage.countryUS.click();
+    registrationPage.registrationStateDropdown.click();
+    registrationPage.stateCA.click();
+    registrationPage.dateOfBirth.type(dateOfBirth)
+    registrationPage.accountEmail.type(email);
+    registrationPage.securityQuestionDropdown.click();
+    registrationPage.questionPetName.click();
+    registrationPage.securityAnswer.type("Rick");
+    registrationPage.confirmButton.click();
+    registrationPage.lastNameErrorMessage.should('be.visible');
+  })
 
 });

@@ -1,4 +1,5 @@
 import login from "../../fixtures/page_objects/login";
+import registrationPage from "../../fixtures/page_objects/registration.page";
 
 describe('Login', () => {
   let userData;
@@ -9,12 +10,7 @@ describe('Login', () => {
     });
   });
   beforeEach(() => {
-    cy.visit('https://sso.tandemdiabetes.com');
-    cy.errorHandler();
-    cy.contains('button', 'Accept Performance Cookies', { timeout: 10000 }).click();
-    cy.get('[id="country"]').click();
-    cy.get('[data-value="US"]').click();
-    cy.get('button[type="button"]').contains('Continue').click();
+    registrationPage.visitRegistrationPage();
   });
 
   it('Should login with existing User account', () => {

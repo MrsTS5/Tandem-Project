@@ -21,5 +21,14 @@ class RegistrationPage {
   get termsOfUseCheckbox() { return cy.get('[name="consents.7c5b3d01-a0a7-43ce-abdc-92aebfd6b843"]') };
   get acknoledgementCheckbox() { return cy.get('[name="consents.062533aa-6614-46fc-921e-254d5481c602"]') };
   get continueButton() { return cy.contains('button', 'Continue') };
+  get lastNameErrorMessage() {return cy.get('[id="lastName-helper-text"]')};
+  visitRegistrationPage() {
+    cy.visit('https://sso.tandemdiabetes.com');
+    cy.errorHandler();
+    cy.contains('button', 'Accept Performance Cookies', { timeout: 10000 }).click();
+    cy.get('[id="country"]').click();
+    cy.get('[data-value="US"]').click();
+    cy.get('button[type="button"]').contains('Continue').click();
+  }
 }
 export default new RegistrationPage();

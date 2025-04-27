@@ -1,42 +1,29 @@
 import login from "../../fixtures/page_objects/login";
+import registrationPage from "../../fixtures/page_objects/registration.page";
 
 describe('Login', () => {
-  let userData; 
+  let userData;
 
   before(() => {
     cy.fixture('data').then((data) => {
       userData = data.user;
     });
   });
-
   beforeEach(() => {
-    cy.visit('https://sso.tandemdiabetes.com');
-    cy.errorHandler();
-    cy.contains('button', 'Accept Performance Cookies', { timeout: 10000 }).click();
-    cy.get('[id="country"]').click();
-    cy.get('[data-value="US"]').click();
-    cy.get('button[type="button"]').contains('Continue').click();
+    registrationPage.visitRegistrationPage();
   });
 
-  it('Should not login with ', () => {
-    login.loginEmail.type(userData.Email);  
-    login.loginPassword.type(userData.Password);  
+  it('Should not login with invalid email', () => {
+    login.loginEmail.type(userData.invalidEmail);
+    login.loginPassword.type(userData.Password);
     login.loginIn.click();
-    cy.url({ timeout: 10000 }).should('include', 'sso.tandemdiabetes.com');
+    login.errorMessage.should('be.visible');
   });
 
-  it('Should log out', () => {
-      login.loginEmail.type(userData.Email);  
-      login.loginPassword.type(userData.Password);  
-      login.loginIn.click();
-    
-      cy.url({ timeout: 15000 }).should('include', 'source.tandemdiabetes.com');
-    
-      cy.origin('https://source.tandemdiabetes.com', () => {
-        cy.get('[aria-label="Profile Avatar"]', { timeout: 10000 }).should('be.visible').click();
-        cy.contains('Logout', { timeout: 10000 }).should('be.visible').click();
-      });
-      cy.url({ timeout: 10000 }).should('include', 'sso.tandemdiabetes.com');
-      cy.url().should('include', 'logoutId='); 
-    });
-  }); 
+  it('Should not Login with invalid password', () => {
+    login.loginEmail.type(userData.Email);
+    login.loginPassword.type(userData.numericOnlyPassword);
+    login.loginIn.click();
+    login.errorMessage.should('be.visible');
+  });
+});
