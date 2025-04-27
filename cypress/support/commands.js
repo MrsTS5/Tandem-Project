@@ -1,31 +1,31 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add('errorHandler', () => {
     Cypress.on('uncaught:exception', (err, runnable) => {
         console.error('Uncaught exception detected:', err.message);
         return false;
     });
 });
+
+// Cypress.Commands.add('loginViaUI', (email, password) => {
+//     cy.visit('https://sso.tandemdiabetes.com');
+//     cy.errorHandler();
+//     cy.contains('button', 'Accept Performance Cookies', { timeout: 10000 }).click();
+//     cy.get('[id="country"]').click();
+//     cy.get('[data-value="US"]').click();
+//     cy.get('button[type="button"]').contains('Continue').click();
+//     cy.get('[id="email"]').type(email);
+//     cy.get('[id="password"]').type(password);
+//     cy.contains('button', 'Log In').click();
+//   });
+  
+//   Cypress.Commands.add('logoutViaUI', () => {
+//     cy.url({ timeout: 15000 }).should('include', 'source.tandemdiabetes.com');
+    
+//     cy.origin('https://source.tandemdiabetes.com', () => {
+//     cy.get('[aria-label="Profile Avatar"]', { timeout: 10000 }).should('be.visible').click();
+//     cy.contains('Logout', { timeout: 10000 }).should('be.visible').click();
+//     });
+//     cy.url({ timeout: 10000 }).should('include', 'sso.tandemdiabetes.com');
+//     cy.url().should('include', 'logoutId='); 
+//   });
+  
+  

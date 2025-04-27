@@ -1,32 +1,44 @@
-import { faker } from '@faker-js/faker';
+import login from "../../fixtures/page_objects/login";
 
 describe('Login', () => {
-  let randomEmail;
-  let randomPassword;
+  let userData;
 
+  before(() => {
+    cy.fixture('data').then((data) => {
+      userData = data.user;
+    });
+  });
   beforeEach(() => {
-    cy.visit('/');
-    randomEmail = faker.internet.email();
-    randomPassword = faker.internet.password();
+    cy.visit('https://sso.tandemdiabetes.com');
+    cy.errorHandler();
+    cy.contains('button', 'Accept Performance Cookies', { timeout: 10000 }).click();
+    cy.get('[id="country"]').click();
+    cy.get('[data-value="US"]').click();
+    cy.get('button[type="button"]').contains('Continue').click();
   });
 
   it('Should login with existing User account', () => {
-    cy.get('.btn-theme-secondary').click();
-    cy.get('#customerDrop').click();
-    cy.get('[href="/products/overview"]').click();
-
-    // Use the generated fake data
-    cy.get('#email').type(randomEmail);
-    cy.get('#password').type(randomPassword);
-
-    cy.contains('button', 'Log In').click();
-
-    // Optionally assert something like a URL or dashboard visibility
-    cy.url().should('include', '/dashboard'); // update as needed
+    login.loginEmail.type(userData.Email);
+    login.loginPassword.type(userData.Password);
+    login.loginIn.click();
   });
-  
-  it('should log out', () => {
 
+  it('Should log out', () => {
+    login.loginEmail.type(userData.Email);
+    login.loginPassword.type(userData.Password);
+    login.loginIn.click();
+
+    cy.origin('https://source.tandemdiabetes.com', () => {
+      cy.get('[aria-label="Profile Avatar"]').should('be.visible').click();
+      cy.contains('Log Out').should('be.visible').click();
+    });
+    cy.url({ timeout: 10000 }).should('include', 'sso.tandemdiabetes.com');
+    cy.url().should('include', 'logoutId=');
+  });
 });
-  
+
+
+
+
+
 

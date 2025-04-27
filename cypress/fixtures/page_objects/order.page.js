@@ -10,5 +10,4 @@ class OrderPage {
     get submitButton() { return cy.get('[id="fe720"]'); }
     get thankYouMessage() { return cy.get('[class="h2"]') };
 }
-
 export default new OrderPage();

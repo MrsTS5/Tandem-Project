@@ -11,7 +11,6 @@ describe('Placing Order', () => {
   before(() => {
     cy.errorHandler();
   });
-
   beforeEach(() => {
     cy.visit('/');
   });
