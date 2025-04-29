@@ -33,6 +33,7 @@ describe('Login', () => {
       });
       
       cy.get('[aria-label="Profile Avatar"]').should('be.visible').click();
+      
       cy.contains('Log Out').should('be.visible').click();
     });
 

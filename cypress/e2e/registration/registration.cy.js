@@ -41,7 +41,7 @@ describe('Registration', () => {
     registrationPage.registrationStateDropdown.click();
     registrationPage.stateCA.click();
     registrationPage.dateOfBirth.type(dateOfBirth)
-    registrationPage.accountEmail.type(email, { force: true });
+    registrationPage.accountEmail.should('be.visible').type(email);
     registrationPage.securityQuestionDropdown.click();
     registrationPage.questionPetName.click();
     registrationPage.securityAnswer.type("Rick");
