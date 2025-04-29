@@ -41,7 +41,7 @@ describe('Registration', () => {
     registrationPage.registrationStateDropdown.click();
     registrationPage.stateCA.click();
     registrationPage.dateOfBirth.type(dateOfBirth)
-    registrationPage.accountEmail.type(email);
+    registrationPage.accountEmail.type(email, { force: true });
     registrationPage.securityQuestionDropdown.click();
     registrationPage.questionPetName.click();
     registrationPage.securityAnswer.type("Rick");
@@ -49,10 +49,10 @@ describe('Registration', () => {
     registrationPage.lastNameErrorMessage.should('be.visible');
   });
 
-  // after(() => {
-  //   cy.clearCookies();
-  //   cy.clearLocalStorage();
-  //   cy.log('Cleaned up cookies and local storage after registration tests');
-  // });
+  after(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.log('Cleaned up cookies and local storage after registration tests');
+  });
 
 });
