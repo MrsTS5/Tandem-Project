@@ -18,7 +18,7 @@ class RegistrationPage {
   get securityAnswer() { return cy.get('[name="account.securityAnswer"]') };
   get confirmButton() { return cy.contains('button', 'Confirm') };
   get dateOfBirth() { return cy.get('[class="MuiBox-root css-0"]') };
-  get termsOfUseCheckbox() { return cy.contains("I agree to Tandem's Terms of Use")}
+  get termsOfUseCheckbox() { return cy.get('[name="consents.7c5b3d01-a0a7-43ce-abdc-92aebfd6b843"]').parent('label')}  
   get acknoledgementCheckbox() { return cy.get('[name="consents.062533aa-6614-46fc-921e-254d5481c602"]') };
   get continueButton() { return cy.contains('button', 'Continue') };
   get lastNameErrorMessage() {return cy.get('[id="lastName-helper-text"]')};
