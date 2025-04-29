@@ -25,7 +25,7 @@ describe('Registration', () => {
     registrationPage.stateCA.click();
     registrationPage.dateOfBirth.type(dateOfBirth);
     registrationPage.accountEmail.should('be.visible').type(email, { force: true }); // ✅ added force
-    registrationPage.securityQuestionDropdown.click();
+    registrationPage.securityQuestionDropdown.should('be.visible').click({ force: true });
     registrationPage.questionPetName.click();
     registrationPage.securityAnswer.type("Rick");
     registrationPage.confirmButton.click();
@@ -42,7 +42,7 @@ describe('Registration', () => {
     registrationPage.stateCA.click();
     registrationPage.dateOfBirth.type(dateOfBirth);
     registrationPage.accountEmail.should('be.visible').type(email, { force: true }); // ✅ added force
-    registrationPage.securityQuestionDropdown.click();
+    registrationPage.securityQuestionDropdown.should('be.visible').click({ force: true });
     registrationPage.questionPetName.click();
     registrationPage.securityAnswer.type("Rick");
     registrationPage.confirmButton.click();
