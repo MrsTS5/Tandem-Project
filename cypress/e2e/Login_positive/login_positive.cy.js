@@ -37,7 +37,7 @@ describe('Login', () => {
       cy.contains('Log Out').should('be.visible').click();
     });
 
-    cy.url({ timeout: 10000 }).should('include', Cypress.env('loginUrl'));
+    cy.url({ timeout: 10000 }).should('include', 'sso.tandemdiabetes.com');
 
     cy.url().should('include', 'logoutId=');
   });
