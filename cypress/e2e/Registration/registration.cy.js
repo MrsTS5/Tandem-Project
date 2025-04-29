@@ -33,7 +33,10 @@ describe('Registration', () => {
     registrationPage.acknoledgementCheckbox.should('exist').should('be.visible').click({ force: true });
     registrationPage.continueButton.should('be.visible').click({ force: true });
 
+    cy.get('h2').contains('Consents').should('be.visible');
+
     cy.get('[name="consents.7c5b3d01-a0a7-43ce-abdc-92aebfd6b843"]', { timeout: 10000 }).should('exist').parent().click({ force: true });
+
   });
 
   it('Should not register with empty last name field', () => {
