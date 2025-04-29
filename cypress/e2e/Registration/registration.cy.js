@@ -28,12 +28,12 @@ describe('Registration', () => {
     registrationPage.securityQuestionDropdown.should('be.visible').click({ force: true });
     registrationPage.questionPetName.should('be.visible').click({ force: true });
     registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
-    registrationPage.confirmButton.should('be.visible').click({ force: true });
-
-    // Wait for Terms checkboxes after Confirm
-    registrationPage.termsOfUseCheckbox.should('be.visible').click({ force: true });
-    registrationPage.acknoledgementCheckbox.should('be.visible').click({ force: true });
+    registrationPage.confirmButton.should('be.visible').click({ force: true }); 
+    registrationPage.termsOfUseCheckbox.should('exist').should('be.visible').click({ force: true });
+    registrationPage.acknoledgementCheckbox.should('exist').should('be.visible').click({ force: true });
     registrationPage.continueButton.should('be.visible').click({ force: true });
+
+    cy.get('[name="consents.7c5b3d01-a0a7-43ce-abdc-92aebfd6b843"]', { timeout: 10000 }).should('exist').parent().click({ force: true });
   });
 
   it('Should not register with empty last name field', () => {
