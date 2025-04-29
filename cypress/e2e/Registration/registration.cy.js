@@ -9,6 +9,9 @@ const lastName = faker.person.lastName();
 const dateOfBirth = faker.date.birthdate({ min: 18, max: 90, mode: 'age' }).toLocaleDateString('en-US');
 
 describe('Registration', () => {
+  before(() => {
+    cy.errorHandler();
+});
 
   beforeEach(() => {
     cy.visit(Cypress.env('loginUrl') + '/registration/personal_standard');
