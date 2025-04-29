@@ -6,6 +6,7 @@ class LoginPage{
     get profileIcon() {return cy.get('[aria-label="Profile Avatar"]')};
     get logoutButton() {return cy.contains('Logout')};
     get errorMessage() {return cy.get('[role="alert"]')};
+    
     visitLoginPage() {
         cy.visit('https://sso.tandemdiabetes.com');
         cy.errorHandler();

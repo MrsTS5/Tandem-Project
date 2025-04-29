@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
-import registrationPage from '../../fixtures/page_objects/registration.page';
-import commonPage from '../../fixtures/page_objects/common.page';
+import registrationPage from '../../page_objects/registration.page';
+import commonPage from '../../page_objects/common.page';
 
 let email;
 const password = faker.internet.password();
@@ -12,6 +12,7 @@ describe('Registration', () => {
   before(() => {
     cy.errorHandler();
   });
+  
   beforeEach(() => {
     cy.visit('https://sso.tandemdiabetes.com/registration/personal_standard')
     email = faker.internet.email();

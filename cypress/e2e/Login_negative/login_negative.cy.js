@@ -9,6 +9,7 @@ describe('Login', () => {
       userData = data.user;
     });
   });
+  
   beforeEach(() => {
     registrationPage.visitRegistrationPage();
   });

@@ -31,5 +31,7 @@ Tests are integrated into a CI/CD pipeline using GitHub Actions to ensure reliab
 
 ```bash
 npm install
+npx cypress open
+npx cypress run (headless mode)
 
 

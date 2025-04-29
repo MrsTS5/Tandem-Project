@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import orderPage from '../../fixtures/page_objects/order.page';
+import orderPage from '../../page_objects/order.page';
 
 describe('Placing Order', () => {
   const firstName = faker.person.firstName();
@@ -11,6 +11,7 @@ describe('Placing Order', () => {
   before(() => {
     cy.errorHandler();
   });
+  
   beforeEach(() => {
     cy.visit('/');
   });

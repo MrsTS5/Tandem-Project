@@ -22,6 +22,7 @@ class RegistrationPage {
   get acknoledgementCheckbox() { return cy.get('[name="consents.062533aa-6614-46fc-921e-254d5481c602"]') };
   get continueButton() { return cy.contains('button', 'Continue') };
   get lastNameErrorMessage() {return cy.get('[id="lastName-helper-text"]')};
+  
   visitRegistrationPage() {
     cy.visit('https://sso.tandemdiabetes.com');
     cy.errorHandler();
