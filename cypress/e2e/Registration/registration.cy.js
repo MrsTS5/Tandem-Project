@@ -26,8 +26,8 @@ describe('Registration', () => {
     registrationPage.dateOfBirth.type(dateOfBirth);
     registrationPage.accountEmail.should('be.visible').type(email, { force: true }); // ✅ added force
     registrationPage.securityQuestionDropdown.should('be.visible').click({ force: true });
-    registrationPage.questionPetName.click();
-    registrationPage.securityAnswer.type("Rick");
+    registrationPage.questionPetName.should('be.visible').click({ force: true });
+    registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
     registrationPage.confirmButton.click();
     registrationPage.termsOfUseCheckbox.click();
     registrationPage.acknoledgementCheckbox.click();
@@ -43,8 +43,8 @@ describe('Registration', () => {
     registrationPage.dateOfBirth.type(dateOfBirth);
     registrationPage.accountEmail.should('be.visible').type(email, { force: true }); // ✅ added force
     registrationPage.securityQuestionDropdown.should('be.visible').click({ force: true });
-    registrationPage.questionPetName.click();
-    registrationPage.securityAnswer.type("Rick");
+    registrationPage.questionPetName.should('be.visible').click({ force: true });
+    registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
     registrationPage.confirmButton.click();
     registrationPage.lastNameErrorMessage.should('be.visible');
   });
