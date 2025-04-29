@@ -50,7 +50,6 @@ describe('Registration', () => {
     registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
     registrationPage.confirmButton.click({ force: true });
 
-    // Validation message check
     registrationPage.lastNameErrorMessage.should('be.visible');
   });
 
