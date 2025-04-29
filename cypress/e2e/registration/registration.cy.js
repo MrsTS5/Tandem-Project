@@ -34,7 +34,7 @@ describe('Registration', () => {
     registrationPage.continueButton.click();
   });
 
-  it.only('Should not register with empty last name field', () =>{
+  it('Should not register with empty last name field', () =>{
     registrationPage.firstName.type(firstName);
     registrationPage.countryList.click();
     registrationPage.countryUS.click();
