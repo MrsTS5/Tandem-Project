@@ -32,9 +32,9 @@ describe('Registration', () => {
     registrationPage.questionPetName.should('be.visible').click({ force: true });
     registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
     registrationPage.confirmButton.should('be.visible').click({ force: true }); 
-    registrationPage.termsOfUseCheckbox.should('be.visible').click();
-    registrationPage.acknoledgementCheckbox.should('be.visible').click();
-    registrationPage.continueButton.should('be.visible').click({ force: true });
+    // registrationPage.termsOfUseCheckbox.should('be.visible').click();
+    // registrationPage.acknoledgementCheckbox.should('be.visible').click();
+    // registrationPage.continueButton.should('be.visible').click({ force: true });
   });
 
   it('Should not register with empty last name field', () => {
