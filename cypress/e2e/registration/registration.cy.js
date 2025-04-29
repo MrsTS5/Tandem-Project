@@ -12,9 +12,9 @@ describe('Registration', () => {
   before(() => {
     cy.errorHandler();
   });
-  
+
   beforeEach(() => {
-    cy.visit('https://sso.tandemdiabetes.com/registration/personal_standard')
+    cy.visit(Cypress.env('loginUrl') + '/registration/personal_standard');
     email = faker.internet.email();
     commonPage.acceptCookiesAndSelectCountry('US');
   });
