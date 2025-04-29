@@ -24,14 +24,14 @@ describe('Registration', () => {
     registrationPage.registrationStateDropdown.click();
     registrationPage.stateCA.click();
     registrationPage.dateOfBirth.type(dateOfBirth);
-    registrationPage.accountEmail.should('be.visible').type(email, { force: true }); // ✅ added force
+    registrationPage.accountEmail.should('be.visible').type(email, { force: true });
     registrationPage.securityQuestionDropdown.should('be.visible').click({ force: true });
     registrationPage.questionPetName.should('be.visible').click({ force: true });
     registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
-    registrationPage.confirmButton.click();
-    registrationPage.termsOfUseCheckbox.click();
-    registrationPage.acknoledgementCheckbox.click();
-    registrationPage.continueButton.click();
+    registrationPage.confirmButton.should('be.visible').click({ force: true }); 
+    registrationPage.termsOfUseCheckbox.should('be.visible').click({ force: true });
+    registrationPage.acknoledgementCheckbox.should('be.visible').click({ force: true });
+    registrationPage.continueButton.should('be.visible').click({ force: true });
   });
 
   it('Should not register with empty last name field', () => {
@@ -41,11 +41,11 @@ describe('Registration', () => {
     registrationPage.registrationStateDropdown.click();
     registrationPage.stateCA.click();
     registrationPage.dateOfBirth.type(dateOfBirth);
-    registrationPage.accountEmail.should('be.visible').type(email, { force: true }); // ✅ added force
+    registrationPage.accountEmail.should('be.visible').type(email, { force: true }); 
     registrationPage.securityQuestionDropdown.should('be.visible').click({ force: true });
     registrationPage.questionPetName.should('be.visible').click({ force: true });
     registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
-    registrationPage.confirmButton.click();
+    registrationPage.confirmButton.should('be.visible').click({ force: true }); 
     registrationPage.lastNameErrorMessage.should('be.visible');
   });
 
