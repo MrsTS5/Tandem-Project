@@ -49,10 +49,10 @@ describe('Registration', () => {
     registrationPage.lastNameErrorMessage.should('be.visible');
   });
 
-  after(() => {
-    cy.clearCookies();
-    cy.clearLocalStorage();
-    cy.log('Cleaned up cookies and local storage after registration tests');
-  });
+  // after(() => {
+  //   cy.clearCookies();
+  //   cy.clearLocalStorage();
+  //   cy.log('Cleaned up cookies and local storage after registration tests');
+  // });
 
 });

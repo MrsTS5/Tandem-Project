@@ -42,11 +42,11 @@ describe('Login', () => {
     cy.url().should('include', 'logoutId=');
   });
 
-  after(() => {
-    cy.clearCookies();
-    cy.clearLocalStorage();
-    cy.log('Cleaned up cookies and local storage after login tests');
-  });
+  // after(() => {
+  //   cy.clearCookies();
+  //   cy.clearLocalStorage();
+  //   cy.log('Cleaned up cookies and local storage after login tests');
+  // });
 
 });
 
