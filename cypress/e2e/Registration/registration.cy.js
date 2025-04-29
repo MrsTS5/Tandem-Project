@@ -29,8 +29,8 @@ describe('Registration', () => {
     registrationPage.questionPetName.should('be.visible').click({ force: true });
     registrationPage.securityAnswer.should('be.visible').type("Rick", { force: true });
     registrationPage.confirmButton.should('be.visible').click({ force: true }); 
-    registrationPage.termsOfUseCheckbox.should('be.visible').click({ force: true });
-    registrationPage.acknoledgementCheckbox.should('be.visible').click({ force: true });
+    registrationPage.termsOfUseCheckbox.should('exist').should('be.visible').click({ force: true });
+    registrationPage.acknoledgementCheckbox.should('exist').should('be.visible').click({ force: true });
     registrationPage.continueButton.should('be.visible').click({ force: true });
   });
 
