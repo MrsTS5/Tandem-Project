@@ -24,23 +24,23 @@ describe('Login', () => {
     login.loginEmail.type(userData.Email);
     login.loginPassword.type(userData.Password);
     login.loginIn.click();
-
+  
     cy.origin('https://source.tandemdiabetes.com', () => {
       cy.get('body').then(($body) => {
         if ($body.find('.MuiDialog-container').length > 0) {
           cy.get('.MuiDialog-container button').click({ force: true });
         }
       });
+  
+      cy.get('[aria-label="Profile Avatar"]').should('be.visible').click({ force: true });
       
-      cy.get('[aria-label="Profile Avatar"]').should('be.visible').click();
-      
-      cy.contains('Log Out').should('be.visible').click();
+      cy.contains('Log Out').should('be.visible').click({ force: true });
     });
-
+  
     cy.url({ timeout: 10000 }).should('include', 'sso.tandemdiabetes.com');
-
     cy.url().should('include', 'logoutId=');
   });
+  
 
   // after(() => {
   //   cy.clearCookies();
