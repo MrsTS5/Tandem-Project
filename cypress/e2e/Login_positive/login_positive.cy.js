@@ -1,5 +1,5 @@
-import login from "../../fixtures/page_objects/login";
-import registrationPage from "../../fixtures/page_objects/registration.page";
+import login from "../../page_objects/login";
+import registrationPage from "../../page_objects/registration.page";
 
 describe('Login', () => {
   let userData;
@@ -31,9 +31,16 @@ describe('Login', () => {
     });
 
     cy.url({ timeout: 10000 }).should('include', Cypress.env('loginUrl'));
-    
+
     cy.url().should('include', 'logoutId=');
   });
+  
+  after(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.log('Cleaned up cookies and local storage after login tests');
+  });
+
 });
 
 

@@ -9,9 +9,6 @@ const lastName = faker.person.lastName();
 const dateOfBirth = faker.date.birthdate({ min: 18, max: 90, mode: 'age' }).toLocaleDateString('en-US');
 
 describe('Registration', () => {
-  before(() => {
-    cy.errorHandler();
-  });
 
   beforeEach(() => {
     cy.visit(Cypress.env('loginUrl') + '/registration/personal_standard');
@@ -50,6 +47,12 @@ describe('Registration', () => {
     registrationPage.securityAnswer.type("Rick");
     registrationPage.confirmButton.click();
     registrationPage.lastNameErrorMessage.should('be.visible');
-  })
+  });
+
+  after(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.log('Cleaned up cookies and local storage after registration tests');
+  });
 
 });

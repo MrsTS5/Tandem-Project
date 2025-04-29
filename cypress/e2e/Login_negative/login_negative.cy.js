@@ -1,5 +1,5 @@
-import login from "../../fixtures/page_objects/login";
-import registrationPage from "../../fixtures/page_objects/registration.page";
+import login from "../../page_objects/login";
+import registrationPage from "../../page_objects/registration.page";
 
 describe('Login', () => {
   let userData;
@@ -9,7 +9,7 @@ describe('Login', () => {
       userData = data.user;
     });
   });
-  
+
   beforeEach(() => {
     registrationPage.visitRegistrationPage();
   });
@@ -27,4 +27,11 @@ describe('Login', () => {
     login.loginIn.click();
     login.errorMessage.should('be.visible');
   });
+  
+  after(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.log('Cleaned up cookies and local storage after login tests');
+  });
+
 });

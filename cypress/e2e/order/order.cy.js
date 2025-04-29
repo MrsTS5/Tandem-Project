@@ -8,10 +8,6 @@ describe('Placing Order', () => {
   const postalCode = faker.location.zipCode();
   const phoneNumber = faker.phone.number('###-###-####');
 
-  before(() => {
-    cy.errorHandler();
-  });
-  
   beforeEach(() => {
     cy.visit('/');
   });
@@ -31,5 +27,12 @@ describe('Placing Order', () => {
     orderPage.submitButton.click();
     orderPage.thankYouMessage.should('be.visible');
   });
+
+  after(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    cy.log('Cleaned up cookies and local storage after placing an order test');
+  });
+  
 });
 
