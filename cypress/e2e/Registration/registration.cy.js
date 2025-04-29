@@ -19,7 +19,7 @@ describe('Registration', () => {
     commonPage.acceptCookiesAndSelectCountry('US');
   });
 
-  it.only('Should Register new account', () => {
+  it('Should Register new account', () => {
     registrationPage.firstName.type(firstName);
     registrationPage.lastName.type(lastName);
     registrationPage.countryList.click();
